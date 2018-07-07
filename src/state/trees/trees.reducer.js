@@ -18,22 +18,25 @@ const trees = (state = {}, action) => {
                 return { ...state }
             return { ...state, [action.domain]: TreeAlgorithms.toggleExpand(TreeAlgorithms.getTreeCopy(state[action.domain]), action.id) }
 
-        case SELECT_TREE_NODE:          
+        case SELECT_TREE_NODE:
             if (!state[action.domain])
                 return { ...state }
             newTree = TreeAlgorithms.setSelected(TreeAlgorithms.getTreeCopy(state[action.domain]), action.id)
-            newSelected = TreeAlgorithms.getNode(newTree, action.id)  
-            return  { ...state, [action.domain]: newTree, ["sel" + action.domain]: newSelected }
+            newSelected = TreeAlgorithms.getNode(newTree, action.id)
+            return { ...state, [action.domain]: newTree, ["sel" + action.domain]: newSelected }
 
         case EXPAND_SELECT_NODE:
             if (!state[action.domain])
                 return { ...state }
-            newTree = TreeAlgorithms.expandToAndSelect(TreeAlgorithms.getTreeCopy(state[action.domain]), action.id) 
-            newSelected = TreeAlgorithms.getNode(newTree, action.id)               
-            return  { ...state, [action.domain]: newTree, ["sel" + action.domain]: newSelected }
-                
+            newTree = TreeAlgorithms.expandToAndSelect(TreeAlgorithms.getTreeCopy(state[action.domain]), action.id)
+            newSelected = TreeAlgorithms.getNode(newTree, action.id)
+            return { ...state, [action.domain]: newTree, ["sel" + action.domain]: newSelected }
+
         default:
-            return state
+            if (typeof (state) === 'undefined')
+                return {  }
+            else
+                return state;
     }
 
 }

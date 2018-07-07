@@ -1,6 +1,6 @@
 
 import { connect } from 'react-redux'
-import { doLogout, getTimeDim, getOrgUnitsDim } from '../../state/actions'
+import { doLogout, clearMenu, addMenuItem, getTimeDim, getOrgUnitsDim } from '../../state/actions'
 import MainPage from '../mainpage/mainpage'
 
 
@@ -8,6 +8,7 @@ import MainPage from '../mainpage/mainpage'
 
 const mapStateToProps = state => {
   return {
+    menuList: state.mainMenu.menuList,   
     timeTree: state.trees.time,
     timeSelected: state.trees.seltime,
     orgUnitsTree: state.trees.orgunits,
@@ -18,6 +19,8 @@ const mapStateToProps = state => {
 
 
 const mapDispatchToProps =  {
+    clearMenu,
+    addMenuItem,
     doLogout,
     getTimeDim,
     getOrgUnitsDim,
@@ -27,7 +30,7 @@ const mapDispatchToProps =  {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps, null,  { pure: false }
 )(MainPage)
 
 
