@@ -1,8 +1,5 @@
 import React from 'react';
 import {
-    BrowserRouter as Router,
-    Route,
-    Redirect,
     withRouter
 } from 'react-router-dom'
 import PropTypes from 'prop-types'
@@ -12,7 +9,6 @@ import apiurl from '../../apilink'
 import Menu from '../menu/menu.container'
 import Account from '../account/account.container'
 import Graph from '../graph/graph.container'
-import { doLogout } from '../../state/actions';
 
 
 
@@ -54,10 +50,11 @@ class ProtoMainPage extends React.Component {
 
 
         // define main menu with links, and redirect to account page
-        this.props.clearMenu();
-        this.props.addMenuItem("Regnskapsrapport", "/account")
-        this.props.addMenuItem("Graf utvikling", "/graph")
-        this.props.addMenuItem("Logout", this.props.doLogout)
+        this.props.clearMenu("mainmenu");
+        this.props.addMenuItem("mainmenu", "Regnskapsrapport", "/account")
+        this.props.addMenuItem("mainmenu", "Graf utvikling", "/graph")
+        this.props.addMenuItem("mainmenu", "Logg av", this.props.doLogout)
+        this.props.selectMenuItem("mainmenu", 0)
 
         this.setLink("/account")
     }
@@ -79,10 +76,12 @@ class ProtoMainPage extends React.Component {
                 </span>
                 <span className="mainpage-sidepanel" >
                     <div className="filler" />
+                    <h1 className="center-text">HALCYON</h1>
                     <img className="center-image" src={apiurl + "/bird_red128.png"} alt="logo" />
                     <div className="filler" />
-                    <div className="center-text">{this.props.userName}</div>
-                    <Menu menu={this.props.menuList} setLink={this.setLink} />
+                    <div className="username">{this.props.userName}</div>
+                    <div className="smallfiller" />
+                    <Menu menuId="mainmenu" setLink={this.setLink} />
                 </span>
             </div>
         );

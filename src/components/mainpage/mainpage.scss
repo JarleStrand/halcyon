@@ -25,6 +25,7 @@ $sidepanel-width: 250px;
     .center-text{
         text-align: center;
     }
+
     .center-image {
         display: block;
         margin-left: auto;
@@ -32,8 +33,17 @@ $sidepanel-width: 250px;
         width: 60%;        
     }    
 
+    .username{
+        text-align: center;
+        font-weight: bold;
+    }
+
     .filler {
         height: 75px
+    }
+
+    .smallfiller {
+        height: 25px
     }
 
 }

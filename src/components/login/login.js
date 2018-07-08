@@ -42,27 +42,27 @@ class LoginForm extends React.Component {
     render() {
         return (
             <Form className="form-signin">
-                <h1>Please sign in</h1>
+                <h1>Logg på</h1>
 
                 <FormGroup controlId="userName">
                     <Col componentClass={ControlLabel} sm={2}>
-                        Username
+                        Brukernavn
                     </Col>
                     <Col sm={10}>
-                        <FormControl type="text" placeholder="Username" value={this.state.username} onChange={evt => this.updateUsername(evt)} />
+                        <FormControl type="text" placeholder="brukernavn" value={this.state.username} onChange={evt => this.updateUsername(evt)} />
                     </Col>
                 </FormGroup>
 
                 <FormGroup controlId="userPassword">
                     <Col componentClass={ControlLabel} sm={2}>
-                        Password
+                        Passord
                     </Col>
                     <Col sm={10}>
-                        <FormControl type="password" placeholder="Password" value={this.state.password} onChange={evt => this.updatePassword(evt)} />
+                        <FormControl type="password" placeholder="passord" value={this.state.password} onChange={evt => this.updatePassword(evt)} />
                     </Col>
                 </FormGroup>
 
-                <Button className="btn btn-lg btn-primary btn-block" type="submit" onClick={evt => this.handleSubmit(evt)}>Sign in</Button>
+                <Button className="btn btn-lg btn-primary btn-block" type="submit" onClick={evt => this.handleSubmit(evt)}>Logg på</Button>
 
             </Form>
         );

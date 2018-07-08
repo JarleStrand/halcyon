@@ -25,7 +25,7 @@ class Account extends React.Component {
                 <Grid>
                     <Row>
                         <Col md={12}>
-                            Regnskapsrapport
+                            <h1>Regnskapsrapport</h1>
                         </Col>
                     </Row>
                     <Row>

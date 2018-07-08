@@ -3,6 +3,7 @@ import fetch from 'cross-fetch'
 import {store} from '../index'
 import {TreeAlgorithms} from './tree.js'
 import apiurl from '../apilink'
+import accountTemplate from './accounttemplate';
 
 
 const access_header = "x-access-token"
@@ -82,6 +83,16 @@ export class BixitApi{
             // convert list from API to the tree structure used in this app
             json => TreeAlgorithms.getTreeFromList(json, "profitCenter", "parentProfitCenter", "", "profitCenterDescription")            
         );
+    }
+
+
+
+    static getAccountsData(month, unit){
+        let testData= accountTemplate;
+
+        return new Promise((accept, reject) => {
+            setTimeout(()=> accept(testData),10)            
+        });
     }
 
 
