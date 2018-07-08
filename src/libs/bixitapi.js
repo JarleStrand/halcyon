@@ -91,7 +91,7 @@ export class BixitApi{
         let testData= accountTemplate;
 
         return new Promise((accept, reject) => {
-            setTimeout(()=> accept(testData),10)            
+            setTimeout(()=> accept(testData),11)            
         });
     }
 
