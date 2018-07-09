@@ -3,13 +3,11 @@ import {
     withRouter
 } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Loading, Spinner, Content } from 'react-loading-spinner'
-import './mainpage.css';
-
-import apiurl from '../../apilink'
+import './mainpage.css'
 import Menu from '../menu/menu.container'
 import Account from '../account/account.container'
 import Graph from '../graph/graph.container'
+import Spinner from '../spinner/spinner.container'
 
 
 
@@ -74,15 +72,15 @@ class ProtoMainPage extends React.Component {
 
         return (
             <div className="page">
-            {this.props.isLoading? "LOADING" : ""}
+               <Spinner/>
                 <span className="mainpage-mainpanel">
                     {this.state.currLink === "/account" ? <Account /> : null}
                     {this.state.currLink === "/graph" ? <Graph /> : null}
                 </span>
                 <span className="mainpage-sidepanel" >
                     <div className="filler" />
-                    <h1 className="center-text">HALCYON</h1>
-                    <img className="center-image" src={apiurl + "/bird_red128.png"} alt="logo" />
+                    <h1 className="corp-name">HALCYON</h1>
+                    <img className="center-image" src={"https://www.bixzit.com/bird_red128.png"} alt="logo" />
                     <div className="filler" />
                     <div className="username">{this.props.userName}</div>
                     <div className="smallfiller" />

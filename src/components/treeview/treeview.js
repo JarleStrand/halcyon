@@ -18,18 +18,21 @@ class TreeView extends React.Component {
     }
 
 
-    selectNode(id) {
-        this.props.treeSelectTreeNode(this.props.domain, id)
+    selectNode(node) {
+        if(!this.props.childOnly || this.props.childOnly===false || node.children.length===0)
+            this.props.treeSelectTreeNode(this.props.domain, node.id)        
     }
 
 
-    toggleNode(id) {
-        this.props.treeToggleExpandNode(this.props.domain, id)
+    toggleNode(node) {
+        this.props.treeToggleExpandNode(this.props.domain, node.id)
     }
 
-    selectAndClose(id) {
-        this.props.treeSelectTreeNode(this.props.domain, id)     
-        this.props.closeMe()   
+    selectAndClose(node) {
+        if(!this.props.childOnly || this.props.childOnly===false || node.children.length===0){
+            this.props.treeSelectTreeNode(this.props.domain, node.id)     
+            this.props.closeMe()   
+        }
     }
 
 
@@ -37,14 +40,14 @@ class TreeView extends React.Component {
         return (
             <div className="treeview-item-one">
                 {node.children && node.children.length > 0 ?
-                    <span onClick={() => this.toggleNode(node.id)} >
+                    <span onClick={() => this.toggleNode(node)} >
                         {node.expanded ? <FontAwesomeIcon icon={faMinusSquare} /> : <FontAwesomeIcon icon={faPlusSquare} />}
                     </span>
                     : null
                 }
                 <span className={node.selected ? "treeview-selected" : ""}
-                    onClick={() => this.selectNode(node.id)}
-                    onDoubleClick={() => this.selectAndClose(node.id)}>
+                    onClick={() => this.selectNode(node)}
+                    onDoubleClick={() => this.selectAndClose(node)}>
                     {node.name}
                 </span>
                 {(node.children && node.children.length !== 0 && node.expanded) ?

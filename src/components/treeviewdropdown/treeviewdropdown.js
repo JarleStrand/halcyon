@@ -83,6 +83,7 @@ class TreeViewDropDown extends React.Component {
                                 <TreeView domain={this.props.domain} selected={this.props.selected} tree={this.props.tree} showRoot={this.props.showRoot}
                                                  treeToggleExpandNode={this.props.treeToggleExpandNode} 
                                                 treeSelectTreeNode={this.props.treeSelectTreeNode}
+                                                childOnly = {this.props.childOnly ? this.props.childOnly : false }
                                                 closeMe={this.closeContent}/>
                                 </div>
                             </Col>

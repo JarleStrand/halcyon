@@ -1,6 +1,6 @@
 
 import React from 'react'
-
+import './table.css';
 
 class Table extends React.Component {
 
@@ -13,9 +13,16 @@ class Table extends React.Component {
 
 
     renderLine(line) {
-        return <tr key={line.key}>
-            <td>{line.description}</td><td>{line.actual}</td><td>{line.budget}</td><td>{line.deviation}</td>
-            </tr>;
+        if(line.type==="") 
+            return null
+        else return (
+         <tr className={line.type==="O" ? "table-headline" : line.type==="L" ? "table-line" : "table-sumline" } key={line.key}>
+            <td>{line.description}</td>
+            <td className="table-align-right">{line.actual}</td>
+            <td className="table-align-right">{line.budget}</td>
+            <td className="table-align-right">{line.deviation}</td>
+            </tr>
+        );
     }
 
 
@@ -28,10 +35,10 @@ class Table extends React.Component {
 
         let res
 
-        res = <table><tbody>
-                <tr>
+        res = <table><tbody >
+                <tr  >
                     <th></th>
-                    <th>Faktisk</th>
+                    <th className="tableStyle">Faktisk</th>
                     <th>Budsjett</th>
                     <th>Avvik</th>
                 </tr>

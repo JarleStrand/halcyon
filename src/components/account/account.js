@@ -32,7 +32,7 @@ class Account extends React.Component {
                     </Row>
                     <Row>
                         <Col md={4}>
-                            <TreeViewDropDown header="Velg måned:" domain="time" tree={this.props.timeTree} selected={this.props.timeSelected}></TreeViewDropDown>
+                            <TreeViewDropDown header="Velg måned:" domain="time" childOnly={true} tree={this.props.timeTree} selected={this.props.timeSelected}></TreeViewDropDown>
                         </Col>
                         <Col md={4}>
                             <TreeViewDropDown header="Velg organisasjonsenhet:" showRoot={true} domain="orgunits" tree={this.props.orgUnitsTree} selected={this.props.orgUnitsSelected}></TreeViewDropDown>
@@ -44,8 +44,7 @@ class Account extends React.Component {
                             <Button bsSize="small" onClick={() => this.getDataHandler()}>Hent rapport</Button>
                         </Col>
                     </Row>
-
-
+                    <Row> <hr/> </Row>
                     <Row>
                         <Table data={this.props.tableData} />
                     </Row>

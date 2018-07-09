@@ -12,7 +12,7 @@ let  accountTemplate =
       "key": 0
     },
     {
-      "type": "L",
+      "type": "S",
       "description": "Sum driftsinntekter",
       "actual": 1,
       "budget": 1,

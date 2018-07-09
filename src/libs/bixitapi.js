@@ -2,7 +2,6 @@
 import fetch from 'cross-fetch'
 import {store} from '../index'
 import {TreeAlgorithms} from './tree.js'
-import apiurl from '../apilink'
 import accountTemplate from './accounttemplate';
 
 
@@ -11,6 +10,7 @@ const access_header = "x-access-token"
 
 
 
+const apiurl = "https://www.bixzit.com"
 
 
 
@@ -95,14 +95,14 @@ export class BixitApi{
             // just make random numbers and pretend it is from back-end
 
             testData[1].actual = 9000 + Math.round(Math.random()*2000)
-            testData[1].budget = testData[1].actual + Math.round(Math.random()*2000) - 1000
+            testData[1].budget = 8500 + Math.round(Math.random()*2000)
             testData[1].deviation = testData[1].actual  - testData[1].budget 
 
             testData[4].actual = 6000 + Math.round(Math.random()*1000)
             testData[5].actual = 1000 + Math.round(Math.random()*500)
             testData[6].actual = 100 + Math.round(Math.random()*500)
 
-            testData[4].budget = 6000 + Math.round(Math.random()*1500) - 750
+            testData[4].budget = 6000 + Math.round(Math.random()*1000) - 750
             testData[5].budget = 1000 + Math.round(Math.random()*500) -250
             testData[6].budget = 100 + Math.round(Math.random()*500) -80
 

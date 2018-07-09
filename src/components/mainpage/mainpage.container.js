@@ -2,7 +2,7 @@
 import { connect } from 'react-redux'
 import { doLogout, clearMenu, addMenuItem, selectMenuItem, getTimeDim, getOrgUnitsDim, clearAccountingData } from '../../state/actions'
 import MainPage from '../mainpage/mainpage'
-import reqpending from '../../state/reqpending/reqpending.reducer';
+
 
 
 
@@ -14,7 +14,6 @@ const mapStateToProps = state => {
     orgUnitsTree: state.trees.orgunits,
     orgUnitsSelected: state.trees.selorgunits,
     userName: state.auth.name,
-    isLoading: state.reqpending.count>0
   }
 }
 
