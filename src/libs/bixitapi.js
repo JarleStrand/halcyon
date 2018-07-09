@@ -88,10 +88,56 @@ export class BixitApi{
 
 
     static getAccountsData(month, unit){
-        let testData= accountTemplate;
 
         return new Promise((accept, reject) => {
-            setTimeout(()=> accept(testData),11)            
+            let testData = [...accountTemplate]
+
+            // just make random numbers and pretend it is from back-end
+
+            testData[1].actual = 9000 + Math.round(Math.random()*2000)
+            testData[1].budget = testData[1].actual + Math.round(Math.random()*2000) - 1000
+            testData[1].deviation = testData[1].actual  - testData[1].budget 
+
+            testData[4].actual = 6000 + Math.round(Math.random()*1000)
+            testData[5].actual = 1000 + Math.round(Math.random()*500)
+            testData[6].actual = 100 + Math.round(Math.random()*500)
+
+            testData[4].budget = 6000 + Math.round(Math.random()*1500) - 750
+            testData[5].budget = 1000 + Math.round(Math.random()*500) -250
+            testData[6].budget = 100 + Math.round(Math.random()*500) -80
+
+            testData[7].actual = testData[4].actual + testData[5].actual + testData[6].actual
+            testData[7].budget = testData[4].budget + testData[5].budget + testData[6].budget
+
+
+            testData[9].actual = testData[1].actual - testData[7].actual
+            testData[9].budget = testData[1].budget - testData[7].budget            
+            
+            testData[12].actual = 200 + Math.round(Math.random()*30)
+            testData[13].actual = 100 + Math.round(Math.random()*30)
+            testData[12].budget = 200 + Math.round(Math.random()*30) - 15
+            testData[13].budget = 100 + Math.round(Math.random()*30) - 15
+
+            testData[14].actual = testData[12].actual - testData[13].actual
+            testData[14].budget = testData[12].budget - testData[13].budget            
+
+            testData[16].actual = testData[9].actual - testData[14].actual
+            testData[16].budget = testData[9].budget - testData[14].budget            
+
+
+            testData[1].deviation = testData[1].actual  - testData[1].budget 
+            testData[4].deviation = testData[4].actual  - testData[4].budget 
+            testData[5].deviation = testData[5].actual  - testData[5].budget 
+            testData[6].deviation = testData[6].actual  - testData[6].budget 
+            testData[7].deviation = testData[7].actual  - testData[7].budget 
+            testData[9].deviation = testData[9].actual  - testData[9].budget 
+            testData[12].deviation = testData[12].actual  - testData[12].budget 
+            testData[13].deviation = testData[13].actual  - testData[13].budget 
+            testData[14].deviation = testData[14].actual  - testData[14].budget 
+            testData[16].deviation = testData[16].actual  - testData[16].budget 
+
+            // a little delay to pretend back-end is fetching data
+            setTimeout(()=> accept(testData),1000)            
         });
     }
 

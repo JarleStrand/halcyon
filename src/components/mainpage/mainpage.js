@@ -3,6 +3,7 @@ import {
     withRouter
 } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import { Loading, Spinner, Content } from 'react-loading-spinner'
 import './mainpage.css';
 
 import apiurl from '../../apilink'
@@ -45,9 +46,10 @@ class ProtoMainPage extends React.Component {
         if (month.length === 1)
             month = "0" + month
 
-        this.props.getTimeDim(year + "-" + month); // expand to current month
-        this.props.getOrgUnitsDim("All"); // expand to root
+        this.props.getTimeDim(year + "-" + month) // expand to current month
+        this.props.getOrgUnitsDim("All") // expand to root
 
+        this.props.clearAccountingData()
 
         // define main menu with links, and redirect to account page
         this.props.clearMenu("mainmenu");
@@ -56,6 +58,8 @@ class ProtoMainPage extends React.Component {
         this.props.addMenuItem("mainmenu", "Logg av", this.props.doLogout)
         this.props.selectMenuItem("mainmenu", 0)
 
+
+        
         this.setLink("/account")
     }
 
@@ -70,9 +74,10 @@ class ProtoMainPage extends React.Component {
 
         return (
             <div className="page">
+            {this.props.isLoading? "LOADING" : ""}
                 <span className="mainpage-mainpanel">
-                    { this.state.currLink==="/account" ? <Account/> : null}
-                    { this.state.currLink==="/graph" ? <Graph/> : null}                    
+                    {this.state.currLink === "/account" ? <Account /> : null}
+                    {this.state.currLink === "/graph" ? <Graph /> : null}
                 </span>
                 <span className="mainpage-sidepanel" >
                     <div className="filler" />
