@@ -2,8 +2,8 @@
 
 
 import { connect } from 'react-redux'
-import Account from './account'
-import { getTableData } from '../../state/actions'
+import AccountTable from './accounttable'
+import { getTableData, clearAccountingData } from '../../state/actions'
 
 
 
@@ -20,7 +20,8 @@ const mapStateToProps = state => {
 
 
 const mapDispatchToProps =  {
-  getTableData
+  getTableData,
+  clearAccountingData  
 }
 
 
@@ -28,7 +29,7 @@ const mapDispatchToProps =  {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Account)
+)(AccountTable)
 
 
 

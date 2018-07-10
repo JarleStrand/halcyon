@@ -8,7 +8,6 @@ import GatewayContainer from '../gateway/gateway.container'
 
 
 
-
 const App = (store) => {
   return(
   <Router>
@@ -16,9 +15,6 @@ const App = (store) => {
   </Router>
   );
 }
-
-
-
 
 
 export default App;

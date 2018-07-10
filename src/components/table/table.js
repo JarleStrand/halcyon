@@ -32,10 +32,8 @@ class Table extends React.Component {
         if (!this.props.data)
             return null
 
-
-        let res
-
-        res = <table><tbody >
+        return(
+            <table><tbody >
                 <tr  >
                     <th></th>
                     <th className="tableStyle">Faktisk</th>
@@ -44,14 +42,7 @@ class Table extends React.Component {
                 </tr>
                 {this.props.data.map((line) => this.renderLine(line))}
             </tbody></table>
-
-
-
-
-
-
-        return res
-
+        )
     }
 }
 

@@ -9,7 +9,7 @@ import Table from '../table/table'
 
 
 
-class Account extends React.Component {
+class AccountTable extends React.Component {
 
 
 
@@ -17,6 +17,11 @@ class Account extends React.Component {
     getDataHandler() {
         this.props.getTableData(this.props.timeSelected.id, this.props.orgUnitsSelected.id)
     }
+
+    handleChangeSelect(e) {
+        this.props.clearAccountingData();
+    }
+
 
 
 
@@ -32,19 +37,28 @@ class Account extends React.Component {
                     </Row>
                     <Row>
                         <Col md={4}>
-                            <TreeViewDropDown header="Velg måned:" domain="time" childOnly={true} tree={this.props.timeTree} selected={this.props.timeSelected}></TreeViewDropDown>
+                            <TreeViewDropDown header="Velg måned:" domain="time"
+                                childOnly={true}
+                                tree={this.props.timeTree}
+                                selected={this.props.timeSelected}
+                                selChange={(e) => this.handleChangeSelect(e)} />
                         </Col>
                         <Col md={4}>
-                            <TreeViewDropDown header="Velg organisasjonsenhet:" showRoot={true} domain="orgunits" tree={this.props.orgUnitsTree} selected={this.props.orgUnitsSelected}></TreeViewDropDown>
+                            <TreeViewDropDown header="Velg organisasjonsenhet:"
+                                showRoot={true}
+                                domain="orgunits"
+                                tree={this.props.orgUnitsTree}
+                                selected={this.props.orgUnitsSelected}
+                                selChange={(e) => this.handleChangeSelect(e)} />
                         </Col>
                     </Row>
-                    <Row> <hr/> </Row>
+                    <Row> <hr /> </Row>
                     <Row>
                         <Col md={2}>
                             <Button bsSize="small" onClick={() => this.getDataHandler()}>Hent rapport</Button>
                         </Col>
                     </Row>
-                    <Row> <hr/> </Row>
+                    <Row> <hr /> </Row>
                     <Row>
                         <Table data={this.props.tableData} />
                     </Row>
@@ -59,5 +73,5 @@ class Account extends React.Component {
 
 
 
-export default Account;
+export default AccountTable;
 

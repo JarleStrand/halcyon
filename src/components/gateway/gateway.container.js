@@ -3,19 +3,19 @@ import { connect } from 'react-redux'
 import { tryLoginOnStart } from '../../state/actions'
 import LoginContainer from '../login/login.container'
 import MainPageContainer from '../mainpage/mainpage.container'
-
+import Spinner from '../spinner/spinner.container'
 
 
 
 const mapStateToProps = state => {
   return {
-    loggedIn: (state.auth && state.auth.token && state.auth.token!==""),
+    loggedIn: (state.auth && state.auth.token && state.auth.token !== ""),
   }
 }
 
 
-const mapDispatchToProps ={
-    tryLoginOnStart
+const mapDispatchToProps = {
+  tryLoginOnStart
 }
 
 
@@ -28,14 +28,16 @@ class Gateway extends React.Component {
 
     props.tryLoginOnStart(); // try login from persistent storage
   }
-  
 
-  render(){
-    return this.props.loggedIn ? <MainPageContainer /> : <LoginContainer />;
+  render() {
+    return (
+      <div>
+        <Spinner />
+        {this.props.loggedIn ? <MainPageContainer /> : <LoginContainer />}
+      </div>
+    );
   }
 }
-
-
 
 
 

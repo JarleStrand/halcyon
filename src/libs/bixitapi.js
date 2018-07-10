@@ -3,6 +3,7 @@ import fetch from 'cross-fetch'
 import {store} from '../index'
 import {TreeAlgorithms} from './tree.js'
 import accountTemplate from './accounttemplate';
+import graphTemplate from './graphtemplate';
 
 
 const access_header = "x-access-token"
@@ -141,6 +142,65 @@ export class BixitApi{
         });
     }
 
+
+
+    static getGraphData(month, unit){
+        return new Promise((accept, reject) => {
+
+            // get a copy of graphTemplate that is recognized as mutated
+            let testData = {
+                data: {...graphTemplate.data},
+                options: {...graphTemplate.options},
+            }        
+            testData.data.labels = ["","",""] 
+            testData.data.datasets[0].data = [0,0,0];
+            testData.data.datasets[1].data = [0,0,0];
+
+            // just mock up data and captions
+
+            let currMonth = Number(month.substr(month.length -2))
+            let currYear = Number(month.substr(0, 4))
+
+            let monthLookup = [
+                "Januar",
+                "Februar",
+                "Mars",
+                "April",
+                "Mai",
+                "Juni",
+                "Juli",
+                "August",
+                "September",
+                "Oktober",
+                "November",
+                "Desember"
+            ];
+
+            testData.data.labels[2] = monthLookup[currMonth-1] + " " + currYear.toString()
+
+            currMonth = currMonth -1
+            if(currMonth===0){
+                currMonth = 12
+                currYear = currYear - 1
+            }
+            testData.data.labels[1] = monthLookup[currMonth-1] + " " + currYear.toString()
+
+            currMonth = currMonth -1
+            if(currMonth===0){
+                currMonth = 12
+                currYear = currYear - 1
+            }
+            testData.data.labels[0] = monthLookup[currMonth-1] + " " + currYear.toString()
+
+            for(var i=0; i<3; i++){
+                testData.data.datasets[0].data[i] = 8000 + Math.round(Math.random()*3000)
+                testData.data.datasets[1].data[i] = 1500 + Math.round(Math.random()*500)
+            }
+
+            // a little delay to pretend back-end is fetching data
+            setTimeout(()=> accept(testData),1000)            
+        });
+    }
 
 }
 

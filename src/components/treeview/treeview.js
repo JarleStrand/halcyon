@@ -5,13 +5,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusSquare, faMinusSquare } from '@fortawesome/free-solid-svg-icons'
 
 
+
 class TreeView extends React.Component {
 
     constructor(props, context) {
         super(props, context);
 
         this.getChildrenRecursively = this.getChildrenRecursively.bind(this)
-
         this.renderNode = this.renderNode.bind(this)
         this.toggleNode = this.toggleNode.bind(this)
         this.selectNode = this.selectNode.bind(this)
@@ -19,8 +19,12 @@ class TreeView extends React.Component {
 
 
     selectNode(node) {
-        if(!this.props.childOnly || this.props.childOnly===false || node.children.length===0)
-            this.props.treeSelectTreeNode(this.props.domain, node.id)        
+        if(!this.props.childOnly || this.props.childOnly===false || node.children.length===0){
+            if(this.props.selChange && this.props.selected.id!=node.id)       
+                this.props.selChange(node.id)
+
+            this.props.treeSelectTreeNode(this.props.domain, node.id) 
+        }
     }
 
 
@@ -28,8 +32,12 @@ class TreeView extends React.Component {
         this.props.treeToggleExpandNode(this.props.domain, node.id)
     }
 
+    
     selectAndClose(node) {
         if(!this.props.childOnly || this.props.childOnly===false || node.children.length===0){
+            if(this.props.selChange && this.props.selected.id!=node.id)       
+                this.props.selChange(node.id)
+
             this.props.treeSelectTreeNode(this.props.domain, node.id)     
             this.props.closeMe()   
         }

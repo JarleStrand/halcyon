@@ -5,10 +5,8 @@ import {
 import PropTypes from 'prop-types'
 import './mainpage.css'
 import Menu from '../menu/menu.container'
-import Account from '../account/account.container'
+import AccountTable from '../accounttable/accounttable.container'
 import Graph from '../graph/graph.container'
-import Spinner from '../spinner/spinner.container'
-
 
 
 
@@ -72,9 +70,8 @@ class ProtoMainPage extends React.Component {
 
         return (
             <div className="page">
-               <Spinner/>
                 <span className="mainpage-mainpanel">
-                    {this.state.currLink === "/account" ? <Account /> : null}
+                    {this.state.currLink === "/account" ? <AccountTable /> : null}
                     {this.state.currLink === "/graph" ? <Graph /> : null}
                 </span>
                 <span className="mainpage-sidepanel" >

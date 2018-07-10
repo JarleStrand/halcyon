@@ -61,7 +61,7 @@ class TreeViewDropDown extends React.Component {
 
 
 
-    render() { 
+    render() {
         return (
             <div className="noSelect">
                 <Row>
@@ -73,18 +73,22 @@ class TreeViewDropDown extends React.Component {
                     <Row>
                         <Col md={12} onClick={this.toogleShowContent} >
                             <div className="dd-header">
-                                <span className="textpart">{ this.props.selected && this.props.selected.name ? this.props.selected.name : ""}</span>
+                                <span className="textpart">{this.props.selected && this.props.selected.name ? this.props.selected.name : ""}</span>
                                 {this.state.showContent ? <FontAwesomeIcon icon={faCaretUp} /> : <FontAwesomeIcon icon={faCaretDown} />}
                             </div>
                         </Col>
                         {this.state.showContent ?
                             <Col md={12} >
                                 <div className="ddtv-container">
-                                <TreeView domain={this.props.domain} selected={this.props.selected} tree={this.props.tree} showRoot={this.props.showRoot}
-                                                 treeToggleExpandNode={this.props.treeToggleExpandNode} 
-                                                treeSelectTreeNode={this.props.treeSelectTreeNode}
-                                                childOnly = {this.props.childOnly ? this.props.childOnly : false }
-                                                closeMe={this.closeContent}/>
+                                    <TreeView domain={this.props.domain}
+                                        selected={this.props.selected}
+                                        tree={this.props.tree}
+                                        showRoot={this.props.showRoot}
+                                        treeToggleExpandNode={this.props.treeToggleExpandNode}
+                                        treeSelectTreeNode={this.props.treeSelectTreeNode}
+                                        childOnly={this.props.childOnly ? this.props.childOnly : false}
+                                        closeMe={this.closeContent}
+                                        selChange={this.props.selChange} />
                                 </div>
                             </Col>
                             : ""}
