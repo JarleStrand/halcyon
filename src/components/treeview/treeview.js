@@ -20,7 +20,7 @@ class TreeView extends React.Component {
 
     selectNode(node) {
         if(!this.props.childOnly || this.props.childOnly===false || node.children.length===0){
-            if(this.props.selChange && this.props.selected.id!=node.id)       
+            if(this.props.selChange && this.props.selected.id!==node.id)       
                 this.props.selChange(node.id)
 
             this.props.treeSelectTreeNode(this.props.domain, node.id) 
@@ -35,7 +35,7 @@ class TreeView extends React.Component {
     
     selectAndClose(node) {
         if(!this.props.childOnly || this.props.childOnly===false || node.children.length===0){
-            if(this.props.selChange && this.props.selected.id!=node.id)       
+            if(this.props.selChange && this.props.selected.id!==node.id)       
                 this.props.selChange(node.id)
 
             this.props.treeSelectTreeNode(this.props.domain, node.id)     
@@ -46,7 +46,7 @@ class TreeView extends React.Component {
 
     renderNode(node) {
         return (
-            <div className="treeview-item-one">
+            <div className="treeview-item-one" key={node.key}>
                 {node.children && node.children.length > 0 ?
                     <span onClick={() => this.toggleNode(node)} >
                         {node.expanded ? <FontAwesomeIcon icon={faMinusSquare} /> : <FontAwesomeIcon icon={faPlusSquare} />}
@@ -77,14 +77,15 @@ class TreeView extends React.Component {
         })
     }
 
-    render() {
 
+    
+    render() {
         return this.props.showRoot ?
             (
                 <div>
                     {this.renderNode(this.props.tree)}
                     <div className="treeview-item-one">
-                        <div>{this.getChildrenRecursively(this.props.tree)}</div>
+                        {this.getChildrenRecursively(this.props.tree)}
                     </div>
                 </div>
             )

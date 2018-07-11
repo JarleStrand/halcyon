@@ -10,10 +10,10 @@ import { getGraphData, setGraphType, clearAccountingData } from '../../state/act
 
 const mapStateToProps = state => {
   return {
-    timeTree: state.trees.time,
-    timeSelected: state.trees.seltime,
-    orgUnitsTree: state.trees.orgunits,
-    orgUnitsSelected: state.trees.selorgunits,
+    timeTree: state.trees.time ? state.trees.time.tree : null,
+    timeSelected: state.trees.time ? state.trees.time.selected : null,
+    orgUnitsTree: state.trees.orgunits ? state.trees.orgunits.tree : null,
+    orgUnitsSelected: state.trees.orgunits ? state.trees.orgunits.selected : null,        
     graphData: state.accountdata.graphData,
     graphType: state.accountdata.graphType
   }

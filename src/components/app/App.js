@@ -4,14 +4,14 @@ import {
 } from 'react-router-dom'
 
 import './App.css';
-import GatewayContainer from '../gateway/gateway.container'
+import Gateway from '../gateway/gateway.container'
 
 
 
 const App = (store) => {
   return(
   <Router>
-    <GatewayContainer />
+    <Gateway />
   </Router>
   );
 }

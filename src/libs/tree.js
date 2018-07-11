@@ -40,7 +40,7 @@ export class TreeAlgorithms{
             return
 
         for(var c of childList){
-            let child = { id: c.id, name: c.name, selected: c.selected, expanded: c.expanded, children: []}
+            let child = { id: c.id, name: c.name, selected: c.selected, expanded: c.expanded, key: c.key, children: []}
             root.children.push(child)
             this._copyChildrenRecursively(child, c.children)
         }
@@ -73,6 +73,24 @@ export class TreeAlgorithms{
 
 
 
+    // helper function - insert key prop in each node
+    static _setKeyValuesRecursively(tree, startKey){ 
+        if(!tree)
+            return startKey
+
+        tree.key = startKey
+        let currKey = startKey + 1
+
+
+        for(var c of tree.children)
+            currKey = this._setKeyValuesRecursively(c, currKey)
+
+        return currKey
+    }
+        
+    
+
+
     // convert list from bixit api to tree for this app
     static getTreeFromList(list, idName, parentIdName, parentIdRootValue, descriptionName){
         if(!list || list.length===0)
@@ -97,7 +115,7 @@ export class TreeAlgorithms{
         if(!tree)
             return null;
 
-        let root = { id: tree.id, name: tree.name, selected: tree.selected, expanded: tree.expanded, children: []}
+        let root = { id: tree.id, name: tree.name, selected: tree.selected, expanded: tree.expanded, key: tree.key, children: []}
         this._copyChildrenRecursively(root, tree.children)
 
         return root
@@ -177,6 +195,13 @@ export class TreeAlgorithms{
     }
 
 
+        // insert key prop in each node
+        static setKeyValues(tree){ 
+            if(tree)
+                this._setKeyValuesRecursively(tree, 0)
+        }
+    
+    
 
 }
 
