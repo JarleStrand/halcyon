@@ -35,7 +35,7 @@ class Graph extends React.Component {
             <Grid>
                 <Row>
                     <Col md={12}>
-                        <h1>Graf - oversikt</h1>
+                        <h1>Graf utvikling</h1>
                     </Col>
                 </Row>
                 <Row>
