@@ -78,7 +78,6 @@ class TreeView extends React.Component {
     }
 
 
-    
     render() {
         return this.props.showRoot ?
             (
@@ -97,7 +96,7 @@ class TreeView extends React.Component {
 }
 
 
-
+// ......
 export default TreeView;
 
 
