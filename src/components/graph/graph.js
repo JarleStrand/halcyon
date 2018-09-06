@@ -67,6 +67,7 @@ class Graph extends React.Component {
                     </Col>
                 </Row>
                 <Row>
+                    <Col md={8}>
                     {this.props.graphData ?
                         (this.props.graphType === "bar" ?
                             <Bar data={this.props.graphData.data} options={this.props.graphData.options} onChange={this.changeHandler} />
@@ -74,6 +75,7 @@ class Graph extends React.Component {
                             <Line data={this.props.graphData.data} options={this.props.graphData.options} onChange={this.changeHandler} />
                         )
                         : null}
+                    </Col>
                 </Row>
             </Grid>
 

@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import './mainpage.css'
 import Menu from '../menu/menu.container'
 import AccountTable from '../accounttable/accounttable.container'
+import HTable from '../htable/htable.container'
 import Graph from '../graph/graph.container'
 
 
@@ -50,7 +51,8 @@ class ProtoMainPage extends React.Component {
         // define main menu with links, and redirect to account page
         this.props.clearMenu("mainmenu");
         this.props.addMenuItem("mainmenu", "Regnskapsrapport", "/account")
-        this.props.addMenuItem("mainmenu", "Graf utvikling", "/graph")
+        this.props.addMenuItem("mainmenu", "Graf", "/graph")        
+        this.props.addMenuItem("mainmenu", "HTabell", "/htable")
         this.props.addMenuItem("mainmenu", "Logg av", this.props.doLogout)
         this.props.selectMenuItem("mainmenu", 0)
 
@@ -73,6 +75,7 @@ class ProtoMainPage extends React.Component {
                 <span className="mainpage-mainpanel">
                     {this.state.currLink === "/account" ? <AccountTable /> : null}
                     {this.state.currLink === "/graph" ? <Graph /> : null}
+                    {this.state.currLink === "/htable" ? <HTable /> : null}
                 </span>
                 <span className="mainpage-sidepanel" >
                     <div className="filler" />
