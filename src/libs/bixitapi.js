@@ -18,6 +18,31 @@ const apiurl = "https://www.bixzit.com"
 
 export class BixitApi{
 
+    static socket;
+
+
+    static connectCube(){
+        this.socket = new WebSocket("wss://localhost:8080");
+        return new Promise((accept, reject) => {
+            this.socket.onopen = () => { accept("open")};
+        });
+    }
+
+
+
+    static queryCube(s){
+        var p = new Promise((accept, reject) => {
+            this.socket.onmessage = function(e){
+                var res = JSON.parse(e.data);
+                accept(res);
+            }
+        });
+
+        this.socket.send(s)
+
+        return p;
+    }
+
 
 
     static login(username, password){

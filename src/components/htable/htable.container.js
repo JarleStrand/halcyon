@@ -3,25 +3,21 @@
 
 import { connect } from 'react-redux'
 import HTable from '../htable/htable'
-import { getTableData, clearAccountingData } from '../../state/actions'
+import { mdxConnect, mdxQuery } from '../../state/actions'
 
 
 
 
 const mapStateToProps = state => {
   return {
-    timeTree: state.trees.time ? state.trees.time.tree : null,
-    timeSelected: state.trees.time ? state.trees.time.selected : null,
-    orgUnitsTree: state.trees.orgunits ? state.trees.orgunits.tree : null,
-    orgUnitsSelected: state.trees.orgunits ? state.trees.orgunits.selected : null,    
-    tableData: state.accountdata.tableData
+    mdxRes: state.mdxstate.data ? state.mdxstate.data : null
   }
 }
 
 
 const mapDispatchToProps =  {
-  getTableData,
-  clearAccountingData  
+  mdxConnect,
+  mdxQuery
 }
 
 
