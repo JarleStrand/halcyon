@@ -1,8 +1,5 @@
 import React from 'react';
-import { Grid, Row, Col, Button } from 'react-bootstrap'
-
-import { BixitApi } from '../../libs/bixitapi';
-
+import { Grid, Row, Col, Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap'
 
 
 
@@ -14,6 +11,7 @@ class HTable extends React.Component {
         this.makeTable = this.makeTable.bind(this);
         this.makeOneRow = this.makeOneRow.bind(this);
         this.makeAllRows = this.makeAllRows.bind(this);
+        this.setCursor = this.setCursor.bind(this);
     
 
     }
@@ -27,8 +25,34 @@ class HTable extends React.Component {
     }
 
 
+    setCursor(line, column)
+    {
+        var txtarea = document.getElementById("mdx-query");
+
+        var txt = txtarea.value;
+
+        var lines = txt.split("\n")
+        var numLines = lines.length;
+
+        var lcounter = 0;
+        var findPos = 0;
+        while(lcounter<numLines && lcounter+1<line){
+            findPos = findPos + lines[lcounter].length
+            lcounter++;            
+        }
+
+        findPos = findPos + column + 1
+
+
+        txtarea.focus()
+        txtarea.selectionStart = findPos
+        txtarea.selectionEnd = findPos
+    
+    }
+
 
     getDataHandler() {
+
         var mdx = `
 
 
@@ -39,9 +63,12 @@ class HTable extends React.Component {
        WHERE
        ([Time].[Year].&[2017])
        
-               
+         
         `        
-        this.props.mdxQuery(mdx);
+        this.setCursor(2,5)
+
+
+         this.props.mdxQuery(mdx);
 
     }
 
@@ -88,13 +115,20 @@ class HTable extends React.Component {
                         </Col>
                     </Row>
             
-                    <Row> <hr /> </Row>
+               
+
+                    <FormGroup controlId="formControlsTextarea">
+                        <ControlLabel>Enter Query:</ControlLabel>
+                        <FormControl id={"mdx-query"} className={"text-nowrap"} style={{ height: 200 }} componentClass="textarea" placeholder="write query here..." />
+                    </FormGroup>
+        
                     <Row> <hr /> </Row>
                     <Row>
                         <Col md={2}>
-                            <Button bsSize="small" onClick={() => this.getDataHandler()}>Hent rapport</Button>
+                            <Button bsSize="small" onClick={() => this.getDataHandler()}>Execute</Button>
                         </Col>
                     </Row>
+                    <Row> <hr /> </Row>
                     <Row>
                       {this.makeTable()}
                     </Row>

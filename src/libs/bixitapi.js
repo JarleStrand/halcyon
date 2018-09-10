@@ -24,7 +24,8 @@ export class BixitApi{
     static connectCube(){
         this.socket = new WebSocket("wss://localhost:8080");
         return new Promise((accept, reject) => {
-            this.socket.onopen = () => { accept("open")};
+            accept("open");
+            // this.socket.onopen = () => { accept("open")};
         });
     }
 
@@ -32,13 +33,16 @@ export class BixitApi{
 
     static queryCube(s){
         var p = new Promise((accept, reject) => {
+
+            accept([]);
+
             this.socket.onmessage = function(e){
                 var res = JSON.parse(e.data);
                 accept(res);
             }
         });
 
-        this.socket.send(s)
+        //this.socket.send(s)
 
         return p;
     }
@@ -55,10 +59,13 @@ export class BixitApi{
         })
         .then(
             res => { 
+                return [];
+                /*
                 if(res.ok)
                     return res.json()
                 else
                     throw new Error("autentication error")
+                    */
             }
         );
     }

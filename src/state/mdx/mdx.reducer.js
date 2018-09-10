@@ -4,7 +4,7 @@ import { MDX_SETCONNECTED, MDX_SETDATA } from './mdx.actions'
 
 
 const mdxstate = (state, action) => {
-    let newState
+
     switch (action.type) {
         case MDX_SETCONNECTED:
             return { connected: true };
